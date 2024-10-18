@@ -1,0 +1,170 @@
+package bikeproject;
+
+public class Bike implements BikeParts {
+   private String handleBars;
+   private String frame;
+   private String tyres;
+   private String seatType;
+   private int numGears;
+   private final String make;
+
+   public Bike() {
+      this.make = "Oracle Cycles";
+   }
+
+   public Bike(String var1, String var2, String var3, String var4, int var5) {
+      this.handleBars = var1;
+      this.frame = var2;
+      this.tyres = var3;
+      this.seatType = var4;
+      this.numGears = var5;
+      this.make = "Oracle Cycles";
+   }
+
+   public void printDescription() {
+      System.out.println("\n" + this.make + "\nThis bike has " + this.handleBars + " handlebars on a " + this.frame + " frame with " + this.numGears + " gears.\nIt has a " + this.seatType + " seat with " + this.tyres + " tyres.");
+   }
+}
+//bike.class
+//BikeDriver.class
+package bikeproject;
+
+public class BikeDriver {
+   public BikeDriver() {
+   }
+
+   public static void main(String[] var0) {
+      RoadBike var1 = new RoadBike();
+      RoadBike var2 = new RoadBike("drop", "tourer", "semi-grip", "comfort", 14, 25, 18);
+      MountainBike var3 = new MountainBike();
+      Bike var4 = new Bike();
+      var1.setPostHeight(20);
+      var1.printDescription();
+      var2.printDescription();
+      var3.printDescription();
+      var4.printDescription();
+   }
+}
+//BikeParts
+package bikeproject;
+
+public interface BikeParts {
+   String MAKE = "Oracle Cycles";
+
+   void printDescription();
+}
+
+//MountainBike.class
+package bikeproject;
+
+public class MountainBike extends Bike implements MountainParts {
+   private String suspension;
+   private String type;
+   private int frameSize;
+
+   public MountainBike() {
+      this("Bull Horn", "Hardtail", "Maxxis", "dropper", 27, "RockShox XC32", "Pro", 19);
+   }
+
+   public MountainBike(String var1, String var2, String var3, String var4, int var5, String var6, String var7, int var8) {
+      super(var1, var2, var3, var4, var5);
+      this.suspension = var6;
+      this.type = var7;
+      this.frameSize = var8;
+   }
+
+   public String getSuspension() {
+      return this.suspension;
+   }
+
+   public void setSuspension(String var1) {
+      this.suspension = var1;
+   }
+
+   public String getType() {
+      return this.type;
+   }
+
+   public void setType(String var1) {
+      this.type = var1;
+   }
+
+   public void printDescription() {
+      super.printDescription();
+      System.out.println("This mountain bike is a " + this.type + " bike and has a " + this.suspension + " suspension and a frame size of " + this.frameSize + " inches.");
+   }
+}
+//MountainParts.class
+package bikeproject;
+
+public interface MountainParts {
+   String TERRAIN = "off_road";
+
+   String getSuspension();
+
+   void setSuspension(String var1);
+
+   String getType();
+
+   void setType(String var1);
+}
+
+//RoadBike.class
+package bikeproject;
+
+public class RoadBike extends Bike implements RoadParts {
+   private int tyreWidth;
+   private int postHeight;
+
+   public RoadBike() {
+      this("drop", "racing", "tread less", "razor", 19, 20, 22);
+   }
+
+   public RoadBike(int var1) {
+      this("drop", "racing", "tread less", "razor", 19, 20, var1);
+   }
+
+   public RoadBike(String var1, String var2, String var3, String var4, int var5, int var6, int var7) {
+      super(var1, var2, var3, var4, var5);
+      this.tyreWidth = var6;
+      this.postHeight = var7;
+   }
+
+   public int getTyreWidth() {
+      return this.tyreWidth;
+   }
+
+   public void setTyreWidth(int var1) {
+      this.tyreWidth = var1;
+   }
+
+   public int getPostHeight() {
+      return this.postHeight;
+   }
+
+   public void setPostHeight(int var1) {
+      this.postHeight = var1;
+   }
+
+   public void printDescription() {
+      super.printDescription();
+      System.out.println("This Roadbike bike has " + this.tyreWidth + "mm tyres and a post height of " + this.postHeight + ".");
+   }
+}
+
+//RoadParts.class
+package bikeproject;
+
+public interface RoadParts {
+   String TERRAIN = "track_racing";
+
+   int getTyreWidth();
+
+   void setTyreWidth(int var1);
+
+   int getPostHeight();
+
+   void setPostHeight(int var1);
+}
+
+
